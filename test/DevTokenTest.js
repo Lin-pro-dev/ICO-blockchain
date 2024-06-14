@@ -6,7 +6,6 @@ contract('DevToken', function (accounts) {
 
   it('initializes the contract with the correct values', function () {
     return DevToken.deployed().then(function (instance) {
-      console.log("hererer");
       tokenInstance = instance;
       return tokenInstance.name();
     }).then(function (name) {
@@ -16,12 +15,13 @@ contract('DevToken', function (accounts) {
     }).then(function () {
       return tokenInstance.balanceOf(accounts[0])
     }).then(function (balance) {
-      console.log("hhhhhhhhhhhhhhhhh");
+      console.log("account0 balance");
       console.log(balance);
+      return tokenInstance.transfer(accounts[1], 1000 * 10 ** 9)
+    }).then(function () {
       return tokenInstance.balanceOf(accounts[1])
     }).then(function (balance) {
-
-      console.log("hhhhhhhhhhhhhhhhh");
+      console.log("account1 balance");
       console.log(balance);
     })
   })
