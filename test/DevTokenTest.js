@@ -23,6 +23,12 @@ contract('DevToken', function (accounts) {
     }).then(function (balance) {
       console.log("account1 balance");
       console.log(balance);
-    })
+      return tokenInstance.buyTokens({from: accounts[1]})
+    }).then(function () {
+      return tokenInstance.balanceOf(accounts[1])
+    }).then(function (balance) {
+      console.log("account1 balance after purchase");
+      console.log(balance);
+    });
   })
 });
